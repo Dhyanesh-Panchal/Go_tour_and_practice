@@ -53,6 +53,36 @@ func main() {
 > The zero value of a function type is `nil`. **If you call `nil` function, it causes a runtime `panic`.**
 
 
+## Closures
+- Closures are excellent way of retaining the Variables of the parent function.
+- Its works by returning the function which accesses that variable.
+```go
+// Function returning a closure
+func counter() func() int {
+    count := 0  // Enclosed variable
+    var x1 = 100
+	// Utilize this x1
+    return func() int {
+        count++  // Modifies outer variable
+        return count
+    }
+}
+
+func main() {
+next := counter()  // next is a closure
+fmt.Println(next()) // 1
+fmt.Println(next()) // 2
+fmt.Println(next()) // 3
+
+newCounter := counter() // New closure with a separate count variable
+fmt.Println(newCounter()) // 1
+}
+```
+
+- The variabe `count` here is stored initially on call stack, but when the counter() returns, this variable **escapes to heap**.
+- Note: the `x1` is not used in the return function hence, its get wipedout with stack when call returns.
+- 
+
 # Variables
 - `var` can be used to declare variables at package and function level.
 - Inside a function, the `:=` short assignment statement can be used in place of a `var` declaration with implicit type.

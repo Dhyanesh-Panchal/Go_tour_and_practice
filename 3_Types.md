@@ -32,3 +32,4 @@ Variables declared without an explicit initial value are given their zero value.
 - `false` for the boolean type, and
 - `""` (the empty string) for strings.
 - Pointers, slices, maps, channels, functions: `nil`
+- The zero value of a struct is a struct where all fields are set to their respective zero values.
