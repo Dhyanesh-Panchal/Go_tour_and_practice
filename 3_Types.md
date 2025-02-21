@@ -33,3 +33,12 @@ Variables declared without an explicit initial value are given their zero value.
 - `""` (the empty string) for strings.
 - Pointers, slices, maps, channels, functions: `nil`
 - The zero value of a struct is a struct where all fields are set to their respective zero values.
+
+
+# Type conversion
+The expression `T(v)` converts the value `v` to the type `T`.
+- Unlike in C, in Go assignment between items of different type requires an explicit conversion.
+- The conversion is allowed only if the value is representable in the target type. For instance, converting a very large value to a type that cannot represent such a large value would result in a **compile-time error**.
+
+- **Type Inference**: When declaring a variable without specifying an explicit type (either by using the := syntax or var = expression syntax), the variable's type is inferred from the value on the right hand side.
+

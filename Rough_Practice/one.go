@@ -7,5 +7,11 @@ func mera_func(x, y int, z string) int {
 }
 
 func main() {
-	fmt.Printf("%T", mera_func)
+	s := []int{1, 2, 3}
+	a := [...]int{1, 2, 3}
+	s1 := a[:2]
+	//s_nil := a[:0]
+	//fmt.Println(s_nil == nil)
+
+	fmt.Printf("%T %T %T", a, s, s1)
 }
