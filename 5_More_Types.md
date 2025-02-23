@@ -295,3 +295,59 @@ func describe(i I) {
 ```
 - Note that an interface value that holds a nil concrete value is itself non-nil.
 - A `nil` interface value holds neither value nor concrete type.
+#### Empty Interface
+- The interface type that specifies zero methods is known as the empty interface: ``interface{}``
+### Type Assertions
+- A type assertion provides access to an interface value's underlying concrete value.
+```go
+t,ok := i.(T)
+```
+- This statement asserts that, interface `i` holds concrete Type `T` and assigns the underlying value to `t`, `ok` is `true` if assertion is true.
+- If underlying value is not of type `T` Then this line triggers **panic** in case of `t:= i.(T)`.
+```go
+func main() {
+	var i interface{} = "hello"
+
+	s := i.(string)
+	fmt.Println(s)
+
+	s, ok := i.(string)
+	fmt.Println(s, ok)
+
+	f, ok := i.(float64)
+	fmt.Println(f, ok)
+
+	f = i.(float64) // panic
+	fmt.Println(f)
+}
+```
+### `Stringer` Interface
+- A Stringer is a type that can describe itself as a string. The fmt package (and many others) look for this interface to print values.
+```go
+/*
+type Stringer interface {
+    String() string
+}
+*/
+import "fmt"
+
+type Person struct {
+  Name string
+  Age  int
+}
+
+func (p Person) String() string {
+  return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
+}
+
+func main() {
+  a := Person{"Arthur Dent", 42}
+  z := Person{"Zaphod Beeblebrox", 9001}
+  fmt.Println(a, z)
+}
+```
+---
+# Errors
+Go programs express error state with error values.
+
+The error type is a built-in interface similar to ``fmt.Stringer``
