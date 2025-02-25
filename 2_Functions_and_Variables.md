@@ -31,6 +31,13 @@ func sum(numbers ...int) int {
 }
 ```
 - When you pass variable-length arguments (`...int`), Go converts them into a slice (`[]int`).
+#### Expanding a Slice (... Operator)
+We can pass a slice to a variadic function:
+```go
+numbers := []int{1, 2, 3}
+sum(numbers...) // Expands slice into individual arguments
+
+```
 ### Anonynomus functions
 ```go
 result := func(a, b int) int {
@@ -151,6 +158,10 @@ func main() {
 }
 ```
 - constants can be declared using `const` keyword.
+- Overflow is checked while initializing a variable/constant:
+- ``const x uint8 = 300 // Compilation Error``
+- Also Assigning `nil` to non pointer types ca also cause error:
+- ``var x int = nil`` (its not a zero value of `int`)
 ### Numeric constants
 In Go, numeric constants represent fixed values of numbers. They can be integers, floating-point numbers, or complex numbers.
 

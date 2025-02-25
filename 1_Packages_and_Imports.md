@@ -25,6 +25,7 @@ func Add(a, b int) int {
 - `main` is a special package which indicates that it contains code that *can be built into binary and executed*.
 - `main` package must contain `main()` function else it will give compile time error.
 - Also, if we try to execute/build a Non-main package, it will thrown a compile time error.
+- It is important to note that, It is not possible to import anything from a main package to other packages.
 #### `init()` function
 - Each Packages defines `init()` function that runs before `main()`
 - each file can have multiple init functions.

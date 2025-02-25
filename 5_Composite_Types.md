@@ -1,19 +1,22 @@
+# Composite Types
+- Go supports 8 different composite types as specified by the language specification namely `array`, `struct`, `pointer`, `function`, `interface`, `slice`, `map`, and `channel` types.
+
 # Pointers
 A pointer holds the memory address of the value.
 
 Addressing(using &) and Dereferencing(using *) is similar to that of C.
 ```go
 func main() {
-i, j := 42, 2701
-
-p := &i         // point to i
-fmt.Println(*p) // read i through the pointer
-*p = 21         // set i through the pointer
-fmt.Println(i)  // see the new value of i
-
-p = &j         // point to j
-*p = *p / 37   // divide j through the pointer
-fmt.Println(j) // see the new value of j
+    i, j := 42, 2701
+    
+    p := &i         // point to i
+    fmt.Println(*p) // read i through the pointer
+    *p = 21         // set i through the pointer
+    fmt.Println(i)  // see the new value of i
+    
+    p = &j         // point to j
+    *p = *p / 37   // divide j through the pointer
+    fmt.Println(j) // see the new value of j
 }
 ```
 
@@ -347,7 +350,53 @@ func main() {
 }
 ```
 ---
-# Errors
+## `Errors` Interface
 Go programs express error state with error values.
 
-The error type is a built-in interface similar to ``fmt.Stringer``
+The error type is a built-in interface similar to ``fmt.Stringer``. It containes `Error()` method.
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type ErrNegativeSqrt float64
+
+func (e ErrNegativeSqrt) Error() string{
+	return fmt.Sprintf("cannot Sqrt negative numbers: %f", float64(e))
+}
+
+func Sqrt(x float64) (float64, error) {
+	if x < 0{
+		return 0, ErrNegativeSqrt(x)
+	}
+	z:=x
+	for z*z-x > 0.0001 || x-z*z > 0.0001{
+		z -= (z*z -x)/(2*x)
+	}
+	return z, nil
+}
+
+func main() {
+	fmt.Println(Sqrt(2))
+	fmt.Println(Sqrt(-2))
+}
+/*
+Output:
+    1.4142278559705035 <nil>
+    0 cannot Sqrt negative numbers: -2.000000
+*/
+```
+---
+## `Reader` Interface
+- The io package specifies the io.Reader interface, which represents the read end of a stream of data.
+- The io.Reader interface has a Read method:
+
+```go
+func (T) Read(b []byte) (n int, err error)
+```
+- Read populates the given byte slice with data and returns the number of bytes populated and an error value. It returns an io.EOF error when the stream ends.
+
+---
+**Types like `maps`, `slices`, `channels`, `functions`, and `interfaces` contain pointers internally. When you pass them to a function, you’re copying the pointer, so both the original and the copy refer to the same underlying data.**
