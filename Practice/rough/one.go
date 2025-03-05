@@ -72,5 +72,8 @@ func main() {
 		f2: "4",
 	}
 
-	fmt.Println(t1 == t2)
+	t3 := T1(t2)
+
+	fmt.Println(t3)
+
 }

@@ -1,0 +1,5 @@
+mode: set
+fuzzytesting/main.go:5.31,10.50 2 1
+fuzzytesting/main.go:10.50,12.3 1 1
+fuzzytesting/main.go:14.2,14.18 1 1
+fuzzytesting/main.go:17.13,22.2 4 0
