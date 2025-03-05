@@ -388,6 +388,28 @@ Output:
     0 cannot Sqrt negative numbers: -2.000000
 */
 ```
+
+- Defining expected Errors so they can be checked explicitly in other parts of the code. These are sometimes referred to as **sentinel errors**.
+```go
+package main
+
+import (
+	"fmt"
+	"errors"
+)
+
+// Good practice to define in different file.
+var ErrDivideByZero = errors.New("cannot divide by zero")
+
+func Divide(a, b int) (int, error) {
+  if b == 0 {
+    return 0, ErrDivideByZero
+  }
+
+  return a/b, nil
+}
+
+``` 
 ---
 ## `Reader` Interface
 - The io package specifies the io.Reader interface, which represents the read end of a stream of data.

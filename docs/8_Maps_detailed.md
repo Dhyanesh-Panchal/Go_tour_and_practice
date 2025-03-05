@@ -56,3 +56,10 @@ for key, value := range m {
     fmt.Println("Key:", key, "Value:", value)
 }
 ```
+
+## `maps` lib
+
+
+# SwissMaps
+- SwissMap is a hash table adapated from the "SwissTable" family of hash tables.
+- 
