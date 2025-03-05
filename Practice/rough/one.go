@@ -5,16 +5,27 @@ import "fmt"
 //	func mera_func(x, y int, z string) int {
 //		return 0
 //	}
-type MyType struct {
-	a int
-}
+//
+//	type MyType struct {
+//		a int
+//	}
 
 //func modify(t *MyType) {
 //	t = &MyType{a: 100}
 //}
 
-func modifySlice(s *MyType) {
-	s.a = 100
+//	func modifySlice(s *MyType) {
+//		s.a = 100
+//	}
+type T1 struct {
+	f1 int
+	f2 string
+}
+
+type T2 struct {
+	f1 int
+	f6 string
+	f4 map[string]int
 }
 
 func main() {
@@ -43,4 +54,23 @@ func main() {
 	//
 	//fmt.Println(m)
 
+	//var m map[string]int
+	//
+	//fmt.Println(m["Kuchbhi"])
+	//
+	//m = nil
+	//
+	//fmt.Println(m, m["Kuchbhi"])
+
+	t1 := T1{
+		f1: 1,
+		f2: "2",
+	}
+
+	t2 := T1{
+		f1: 3,
+		f2: "4",
+	}
+
+	fmt.Println(t1 == t2)
 }
