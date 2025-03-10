@@ -29,4 +29,16 @@ func main() {
 	//var bad_i []int = []int(s) 		THIS will give error
 	//fmt.Println(bad_i)
 
+	//	 --------- type conversion with custom types-------------------
+	fmt.Println("------------- type conversion with custom types ---------------")
+	type Mytype int
+	type Mytype2 int
+	type Mytype3 = int
+
+	var v1 Mytype = 10
+	//var v2 Mytype2 = Mytype3(5)  THIS WIL CAUSE ERROR
+	var v2 Mytype2 = Mytype3(5)
+	//var v3 Mytype3 = v1
+	fmt.Println(v2)
+
 }

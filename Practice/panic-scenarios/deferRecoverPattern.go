@@ -30,6 +30,11 @@ func someWork() {
 
 func main() {
 	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered #last", r)
+		}
+	}()
+	defer func() {
 		defer func() {
 			if r := recover(); r != nil {
 				fmt.Println("Recovered #2", r)
@@ -38,10 +43,11 @@ func main() {
 			time.Sleep(4 * time.Second)
 		}()
 
+		panic("Panic in defer")
+
 		if r := recover(); r != nil {
 			fmt.Println("Recovered :", r)
 		}
-		panic("Panic in defer")
 
 	}()
 

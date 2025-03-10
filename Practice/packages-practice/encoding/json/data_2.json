@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "Dhyanesh",
+  "active": true,
+  "scores": [95, 88, 76],
+  "preferences": {
+    "theme": "light",
+    "notifications": false
+  },
+  "tags": ["golang","DBT"],
+  "created_at": "2025-03-09T12:00:00Z"
+}

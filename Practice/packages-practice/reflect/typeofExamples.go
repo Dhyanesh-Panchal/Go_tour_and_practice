@@ -31,6 +31,10 @@ func main() {
 
 	var s = []any{1, "2", uint64(3)}
 
+	for _, val := range s {
+		fmt.Println(val, reflect.TypeOf(val).String())
+	}
+
 	typeS := reflect.TypeOf(s)
 	fmt.Println("typeS Name:", typeS.Name(), " Kind:", typeS.Kind())
 

@@ -19,10 +19,14 @@ func main() {
 	defer pprof.StopCPUProfile()
 
 	//var meraBull bool = false
-	var meraBull uint64 = 10
+	var myVar uint64 = 10
 
 	for i := 0; i < 1e9; i++ {
-		SomeWork(&meraBull)
+		SomeWork(&myVar)
+	}
+
+	for i := 0; i < 10; i++ {
+		go SomeWork(&myVar)
 	}
 
 	// At last run `go tool pprof cpu.prof`

@@ -1,0 +1,30 @@
+  {
+  "name": "Alice",
+  "age": 30,
+  "salary": 75000.50,
+  "married": true,
+  "children": ["Bob", "Charlie"],
+  "address": {
+    "street": "123 Main St",
+    "city": "Wonderland",
+    "zip_code": 12345
+  },
+  "projects": [
+    {
+      "name": "Project A",
+      "budget": 50000,
+      "completed": false
+    },
+    {
+      "name": "Project B",
+      "budget": null,
+      "completed": true
+    }
+  ],
+  "skills": ["Go", "Python", "Docker"],
+  "meta": {
+    "created_at": "2024-03-05T12:00:00Z",
+    "tags": ["developer", "backend"],
+    "extra": null
+  }
+}

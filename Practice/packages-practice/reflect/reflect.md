@@ -45,4 +45,9 @@ func examiner(t reflect.Type, depth int) {
 
 `reflect.ValueOf(var) ` creates a `reflect.Value` instance of the variable.
 - If we want to modify the value, we can pass pointer of the variable.
-- `Type()` can be used to get the type of the varibale
+- `Type()` can be used to get the type of the varibale.
+
+## Struct Tags and Reflection: JSON Tags and database mapping tags.
+
+
+

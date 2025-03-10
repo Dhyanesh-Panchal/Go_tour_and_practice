@@ -8,6 +8,10 @@ import (
 // Errors
 
 func main() {
-	err := errors.New("this is an error")
+	err := errors.New("This is error message")
+
+	// Alternative
+	//fmt.Errorf("This is error message")
 	fmt.Println(err)
+
 }

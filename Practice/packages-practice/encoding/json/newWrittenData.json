@@ -1,0 +1,15 @@
+{
+	"id": 0,
+	"name": "New Person",
+	"active": true,
+	"scores": [
+		1,
+		2,
+		3
+	],
+	"preferences": {
+		"theme": "",
+		"notifications": false
+	},
+	"createdAt": "0001-01-01T00:00:00Z"
+}
