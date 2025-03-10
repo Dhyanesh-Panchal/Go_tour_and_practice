@@ -7,10 +7,6 @@ import (
 func BenchmarkReverse(b *testing.B) {
 	b.ReportAllocs() // ReportAllocs() enables malloc statistics for this benchmark.
 	for n := 0; n < b.N; n++ {
-		s := ""
-		for i := 0; i < 1e2; i++ {
-			s += "s"
-		}
 		Reverse("Something Something")
 	}
 	//fmt.Println(r)

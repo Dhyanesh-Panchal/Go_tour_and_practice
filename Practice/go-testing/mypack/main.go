@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(maths.Add(10, 20))
+	fmt.Println(maths.Adder(10, 20))
 }
