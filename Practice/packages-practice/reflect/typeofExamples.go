@@ -29,25 +29,30 @@ func main() {
 
 	fmt.Println("-----Reflect with interface{}-----")
 
-	var s = []any{1, "2", uint64(3)}
+	var s = []any{1, "2", uint8(3), 5.66}
 
 	for _, val := range s {
 		fmt.Println(val, reflect.TypeOf(val).String())
 	}
 
-	typeS := reflect.TypeOf(s)
-	fmt.Println("typeS Name:", typeS.Name(), " Kind:", typeS.Kind())
+	sType := reflect.TypeOf(s)
+	fmt.Println("sType Name:", sType.Name(), " Kind:", sType.Kind())
 
-	valueS := reflect.ValueOf(s)
+	sValue := reflect.ValueOf(s)
 
-	fmt.Println(valueS.Kind())
-	if valueS.Kind() == reflect.Slice {
-		fmt.Println(valueS.Index(0))
+	fmt.Println(sValue.Type(), sValue.Kind())
+
+	if sValue.Kind() == reflect.Slice {
+		fmt.Println(sValue.Type())
+		for i := 0; i < sValue.Len(); i++ {
+			val := sValue.Index(i).Elem()
+			fmt.Println(val, val.Type())
+		}
 	}
 
 	//valueS
 
-	fmt.Println("ValueS:", valueS.Type())
+	fmt.Println("ValueS:", sValue.Type())
 
 	fmt.Println("-----Reflect with struct-----")
 

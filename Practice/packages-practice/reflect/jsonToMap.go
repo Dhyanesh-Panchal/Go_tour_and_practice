@@ -19,7 +19,11 @@ func main() {
 		log.Fatalf("can't unmarshal json: %v", err)
 	}
 
-	PrintJson(reflect.ValueOf(targetMap), 0)
+	fmt.Println(targetMap)
+	_, ok := targetMap.(map[string]interface{})
+	fmt.Println(ok)
+
+	//PrintJson(reflect.ValueOf(targetMap), 0)
 }
 
 func PrintJson(val reflect.Value, depth int) {
@@ -43,7 +47,7 @@ func PrintJson(val reflect.Value, depth int) {
 		}
 
 	default:
-		fmt.Println(strings.Repeat("\t", depth), val.Interface())
+		fmt.Println(strings.Repeat("\t", depth), val.Elem())
 	}
 }
 
