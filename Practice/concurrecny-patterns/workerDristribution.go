@@ -9,6 +9,29 @@ const (
 	totalSize = 100000000
 )
 
+func main() {
+
+	chunkDistributionChannel := make(chan []float64)
+	outputChan := make(chan float64)
+
+	// spawn pool of 4 workers
+	for i := 0; i < 4; i++ {
+		go worker(chunkDistributionChannel, outputChan)
+	}
+
+	// generate the chunks
+	numberOfChunks := generator(chunkDistributionChannel)
+
+	workerOutputSum := 0.0
+
+	for i := 0; i < numberOfChunks; i++ {
+		workerOutputSum += <-outputChan
+	}
+
+	fmt.Println("Calculated Average :", workerOutputSum/float64(numberOfChunks))
+
+}
+
 func worker(inputChan <-chan []float64, outputChan chan<- float64) {
 	for chunk := range inputChan {
 
@@ -47,27 +70,4 @@ func generator(chunkDistributionChannel chan<- []float64) int {
 	}()
 
 	return numberOfChunks
-}
-
-func main() {
-
-	chunkDistributionChannel := make(chan []float64)
-	outputChan := make(chan float64)
-
-	// spawn pool of 4 workers
-	for i := 0; i < 4; i++ {
-		go worker(chunkDistributionChannel, outputChan)
-	}
-
-	// generate the chunks
-	numberOfChunks := generator(chunkDistributionChannel)
-
-	workerOutputSum := 0.0
-
-	for i := 0; i < numberOfChunks; i++ {
-		workerOutputSum += <-outputChan
-	}
-
-	fmt.Println("Calculated Average :", workerOutputSum/float64(numberOfChunks))
-
 }

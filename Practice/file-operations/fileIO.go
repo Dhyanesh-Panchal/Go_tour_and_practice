@@ -4,15 +4,17 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"time"
 )
 
 func main() {
+	fmt.Println(os.Getpid())
 
 	rfile, err := os.Open("./fileIOReadFile.txt")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	data := make([]byte, 1024)
 	n, err := rfile.Read(data)
@@ -36,11 +38,12 @@ func main() {
 	}
 
 	// Reading with a buffered reader.
+	fmt.Println("-------- Reading with buffered reader --------")
 	reader := bufio.NewReader(rfile)
 
-	buff := make([]byte, 100)
+	//buff := make([]byte, 100) Use this if we need custom buffer
 	for {
-		n, err := reader.Read(buff)
+		line, err := reader.ReadString('\n')
 
 		if err != nil {
 			if err == io.EOF {
@@ -50,7 +53,7 @@ func main() {
 			panic(err)
 		}
 
-		fmt.Print(string(buff[:n]))
+		fmt.Print(line)
 	}
 
 	f, err := os.CreateTemp("", "example.txt")
@@ -67,16 +70,23 @@ func main() {
 	time.Sleep(3 * time.Second)
 	reader = bufio.NewReader(f)
 	for {
-		n, err := reader.Read(buff)
+		line, err := reader.ReadString('\n')
 		if err != nil {
 			if err == io.EOF {
-				fmt.Println(string(buff[:n]))
+				fmt.Println(line)
 				break
 			}
 		}
-		fmt.Println(string(buff[:n]))
+		fmt.Println(line)
 	}
+	os.Remove(f.Name())
 
 	f.Close()
 
+	// Error case : read /path/to/file: file already closed.
+	//n, err = f.Read(data)
+	//if err != nil {
+	//	fmt.Println("Error reading Closed file: ", err)
+	//}
+	//fmt.Println(string(data[:n]))
 }

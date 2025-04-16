@@ -1,16 +1,17 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
+
+func modify(s map[string]interface{}) {
+	s["key2"] = append(s["key2"].([]map[string]interface{}), map[string]interface{}{"key3": 1})
+}
 
 func main() {
-	for i := 0; i < 5; i++ {
-		go func() {
-			time.Sleep(1 * time.Second)
-			fmt.Println(i)
-		}()
+	s := map[string]interface{}{
+		"key1": 1,
+		"key2": []map[string]interface{}{},
 	}
-	time.Sleep(2 * time.Second)
+
+	modify(s)
+	fmt.Println(s["key2"])
 }

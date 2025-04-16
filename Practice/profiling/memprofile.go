@@ -18,13 +18,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
-	// Track process heap
-	pprof.WriteHeapProfile(f)
 	defer f.Close()
 
 	memoryHeavy("Some Text", 1000)
 	s := memoryHeavy("Some more Text", 10000)
+
+	// Track process heap
+	pprof.WriteHeapProfile(f)
 
 	fmt.Println(s)
 

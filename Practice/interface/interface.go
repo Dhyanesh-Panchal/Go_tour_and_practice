@@ -49,7 +49,7 @@ func main() {
 	// other := 100
 	// inter = other // this should give error as `int` doesn't implements my interface.
 
-	// Interface with a nil unerlying concreet type
+	// Interface with a nil underlying concret type
 	inter = null_obj
 
 	fmt.Printf("\n%v %T %d %f\n", inter, inter, inter.Add_int(10), inter.Multiply(10.0))

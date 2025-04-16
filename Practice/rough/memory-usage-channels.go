@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"runtime"
+	"unsafe"
 )
 
 func memUsage() uint64 {
@@ -16,7 +17,8 @@ func main() {
 	before := memUsage()
 	ch1 := make(chan int) // Unbuffered
 	after := memUsage()
-	fmt.Println("Unbuffered channel memory:", after-before, "bytes")
+	//fmt.Println("Unbuffered channel memory:", after-before, "bytes")
+	fmt.Println("Unbuffered channel memory:", unsafe.Sizeof(ch1), "bytes")
 
 	before = memUsage()
 	ch2 := make(chan int, 1000) // Buffered with capacity 1000
